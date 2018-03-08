@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head><title>Raspberry Pi System Status Checker</title></head>
+<body><h1>Raspberry Pi System Status Checker</h1>
+<a href="sysstatus?type=processes">Processes</a>
+<a href="sysstatus?type=system">System</a>
+<a href="sysstatus?type=syslog">System Log</a>
+<a href="sysstatus?type=storage">Storage</a>
+<a href="sysstatus?type=network">Network</a>
+<a href="sysstatus?type=all">Display all</a>
+<a href="logout">Logout</a>
+
+{% import subprocess %}
+{% for command in commands %}
+
+<h2>Command: {{command[0]}} </h2>
+<h2> Output: </h2>
+<pre>
+{% for line in subprocess.check_output(command).splitlines() %}
+{{line}}
+
+{% end %}
+</pre>
+{% end %}
+
+</body>
