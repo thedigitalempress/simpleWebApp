@@ -9,7 +9,7 @@ class SysStatusHandler(tornado.web.RequestHandler):
             self.redirect("/login")
             return
         if self.get_argument("type") == "processes":
-            com = [["pstree"], ["top", "-bnl"]]
+            com = [["pstree"], ["top", "-bn1"]]
         elif self.get_argument("type") == "system":
             com = [["uname", "-a"], ["uptime"]]
         elif self.get_argument("type") == "syslog":
